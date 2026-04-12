@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package maat.api;
+
+option go_package = "maat/idl/gen/go/maat/api;api";
+
+message Project {
+  int64 id = 1;
+  string name = 2;
+  string deploy_path = 3;
+  string owner = 4;
+}
+
+message EnvRecord {
+  int64 project_id = 1;
+  string env_name = 2;
+  string html_content = 3;
+  string build_id = 4;
+  int64 updated_at = 5;
+}
+
+message ListProjectsRequest {
+  string query = 1;
+}
+
+message ListProjectsResponse {
+  repeated Project projects = 1;
+}
+
+message CreateProjectRequest {
+  Project project = 1;
+}
+
+message CreateProjectResponse {
+  bool ok = 1;
+}
+
+message PublishEnvRequest {
+  int64 project_id = 1;
+  string env_name = 2;
+  string html_body = 3;
+}
+
+message PublishEnvResponse {
+  bool ok = 1;
+}
+
+message GetEnvDetailRequest {
+  int64 project_id = 1;
+  string env_name = 2;
+}
+
+message GetEnvDetailResponse {
+  EnvRecord env_record = 1;
+}
+
+message PresignAssetUploadRequest {
+  string project = 1;
+  string build_id = 2;
+  string file_key = 3;
+  int64 expire_seconds = 4;
+}
+
+message PresignAssetUploadResponse {
+  string object_key = 1;
+  string upload_url = 2;
+}
+
+service ReleaseService {
+  rpc ListProjects(ListProjectsRequest) returns (ListProjectsResponse);
+  rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse);
+  rpc PublishEnv(PublishEnvRequest) returns (PublishEnvResponse);
+  rpc GetEnvDetail(GetEnvDetailRequest) returns (GetEnvDetailResponse);
+  rpc PresignAssetUpload(PresignAssetUploadRequest) returns (PresignAssetUploadResponse);
+}
