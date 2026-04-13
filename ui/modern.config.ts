@@ -3,6 +3,14 @@ import { appTools, defineConfig } from '@modern-js/app-tools';
 export default defineConfig({
   plugins: [appTools({ bundler: 'rspack' })],
   tools: {
+    devServer: {
+      proxy: {
+        '/api': {
+          target: 'http://127.0.0.1:8080',
+          changeOrigin: true,
+        },
+      },
+    },
     rspack: (config) => {
       config.resolve = config.resolve || {};
       config.resolve.conditionNames = ['require', 'import', 'browser', 'default'];
@@ -14,7 +22,7 @@ export default defineConfig({
       index: './src/main.tsx',
     },
   },
-  server: {
-    port: 5173,
+  dev: {
+    port: 9000,
   },
 });
