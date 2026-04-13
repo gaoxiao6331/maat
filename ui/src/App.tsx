@@ -17,8 +17,8 @@ export function App() {
           mode="horizontal"
           style={{ background: '#0f172a' }}
           selectedKeys={[view]}
-          onSelect={({ itemKey }) => {
-            if (itemKey === 'projects') {
+          onSelect={({ itemKey }: { itemKey: string | number }) => {
+            if (String(itemKey) === 'projects') {
               setView('projects');
               setProject(null);
             }

@@ -32,7 +32,7 @@ func main() {
 	h := api.NewHTTPHandler(svc)
 
 	r := server.New(server.WithHostPorts(":8080"))
-	h.Register(r)
+	h.Register(r.Engine)
 
 	log.Println("maat mvp server listening on :8080")
 	r.Spin()

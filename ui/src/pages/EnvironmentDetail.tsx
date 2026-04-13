@@ -50,7 +50,7 @@ export function EnvironmentDetail({ project, onBack }: { project: Project; onBac
 
       <Card title="发布 HTML" style={{ width: '100%' }}>
         <Form
-          onSubmit={async (v) => {
+          onSubmit={async (v: unknown) => {
             try {
               const values = v as { env_name: string; html_body: string };
               await api.publishEnv({ project_id: project.id, env_name: values.env_name, html_body: values.html_body });
@@ -77,7 +77,7 @@ export function EnvironmentDetail({ project, onBack }: { project: Project; onBac
 
       <Card title="获取 MinIO 预签名上传 URL" style={{ width: '100%' }}>
         <Form
-          onSubmit={async (v) => {
+          onSubmit={async (v: unknown) => {
             try {
               const values = v as { build_id: string; file_key: string; expire_seconds?: string };
               const res = await api.presignAsset({

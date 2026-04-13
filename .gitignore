@@ -38,3 +38,9 @@ ui/.cache/
 ui/dist/
 ui/.modern-js/
 ui/.rstack/
+
+.idea
+
+# Database files
+*.db
+*.sqlite
