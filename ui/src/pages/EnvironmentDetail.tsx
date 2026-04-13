@@ -24,16 +24,16 @@ export function EnvironmentDetail({ project, onBack }: { project: Project; onBac
   }, [project.id]);
 
   return (
-    <Space vertical align="start" style={{ width: '100%' }} spacing="medium">
+    <Space vertical align="start" className="w-full" spacing="medium">
       <Space>
         <Button onClick={onBack}>返回</Button>
-        <Typography.Title heading={4} style={{ margin: 0 }}>
+        <Typography.Title heading={4} className="!m-0">
           {project.name}
         </Typography.Title>
         <Tag color="cyan">{project.deployPath}</Tag>
       </Space>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 12, width: '100%' }}>
+      <div className="grid w-full gap-3 [grid-template-columns:repeat(auto-fill,minmax(280px,1fr))]">
         {ENV_NAMES.map((env) => {
           const rec = envData[env];
           return (
@@ -48,8 +48,9 @@ export function EnvironmentDetail({ project, onBack }: { project: Project; onBac
         })}
       </div>
 
-      <Card title="发布 HTML" style={{ width: '100%' }}>
+      <Card title="发布 HTML" className="w-full">
         <Form
+          className="w-full rounded-[10px] bg-white p-4"
           onSubmit={async (v: unknown) => {
             try {
               const values = v as { env_name: string; html_body: string };
@@ -75,7 +76,7 @@ export function EnvironmentDetail({ project, onBack }: { project: Project; onBac
         </Form>
       </Card>
 
-      <Card title="获取 MinIO 预签名上传 URL" style={{ width: '100%' }}>
+      <Card title="获取 MinIO 预签名上传 URL" className="w-full">
         <Form
           onSubmit={async (v: unknown) => {
             try {

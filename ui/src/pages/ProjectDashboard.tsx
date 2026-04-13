@@ -25,8 +25,8 @@ export function ProjectDashboard({ onOpenProject }: { onOpenProject: (p: Project
   }, []);
 
   return (
-    <Space vertical align="start" style={{ width: '100%' }} spacing="medium">
-      <Form layout="horizontal" onSubmit={loadProjects} style={{ width: '100%' }}>
+    <Space vertical align="start" className="w-full" spacing="medium">
+      <Form layout="horizontal" onSubmit={loadProjects} className="w-full">
         <Space>
           <Input value={query} onChange={(v) => setQuery(v)} placeholder="搜索项目/owner/路径" />
           <Button theme="solid" htmlType="submit" loading={loading}>
@@ -37,7 +37,7 @@ export function ProjectDashboard({ onOpenProject }: { onOpenProject: (p: Project
 
       <Form
         labelPosition="left"
-        style={{ background: '#fff', padding: 16, borderRadius: 10, width: '100%' }}
+        className="w-full rounded-[10px] bg-white p-4"
         onSubmit={async (values) => {
           try {
             await api.createProject(values as { name: string; owner: string; deploy_path: string });

@@ -11,11 +11,11 @@ export function App() {
   const [project, setProject] = React.useState<Project | null>(null);
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Header style={{ background: '#0f172a' }}>
+    <Layout className="min-h-screen">
+      <Header className="bg-slate-900">
         <Nav
           mode="horizontal"
-          style={{ background: '#0f172a' }}
+          className="bg-slate-900"
           selectedKeys={[view]}
           onSelect={({ itemKey }: { itemKey: string | number }) => {
             if (String(itemKey) === 'projects') {
@@ -27,7 +27,7 @@ export function App() {
           header={{ text: 'MAAT 发布管理台' }}
         />
       </Header>
-      <Content style={{ padding: 24 }}>
+      <Content className="p-6">
         <div className="mx-auto w-full max-w-7xl">
           {view === 'projects' && (
             <ProjectDashboard
